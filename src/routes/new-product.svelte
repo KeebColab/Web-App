@@ -16,16 +16,39 @@
     SelectItem,
     Button,
   } from "carbon-components-svelte";
+  function handleSubmit(event) {
+    // Prevent the default form submission
+    // event.preventDefault();
+    // console log the form data
+    console.log(event.target.apiKey.value);
+    console.log(event.target.owner.value);
+    console.log(event.target.name.value);
+    console.log(event.target.symbol.value);
+    console.log(event.target.chain.value);
+    console.log(event.target.updatable.value);
+  }
 </script>
 
 <div>
-  <Form on:submit>
-    <TextInput labelText="NFTPort API Key" placeholder="Enter api key..." />
-    <TextInput labelText="Your Ethereum Address" placeholder="0x..." />
-    <TextInput labelText="Name your Story" placeholder="Enter story name..." />
-    <TextInput labelText="Symbol" placeholder="Enter symbol..." />
+  <Form on:submit={handleSubmit}>
+    <TextInput
+      name="apiKey"
+      labelText="NFTPort API Key"
+      placeholder="Enter api key..."
+    />
+    <TextInput
+      name="owner"
+      labelText="Your Ethereum Address"
+      placeholder="0x..."
+    />
+    <TextInput
+      name="name"
+      labelText="Name your Contract"
+      placeholder="Enter story name..."
+    />
+    <TextInput name="symbol" labelText="Symbol" placeholder="Enter symbol..." />
     <FormGroup>
-      <Select id="select-1" labelText="Select a blockchain" value="polygon">
+      <Select name="chain" labelText="Select a blockchain" value="polygon">
         <!-- <SelectItem
           hidden
           value="placeholder"
@@ -34,21 +57,20 @@
         <SelectItem value="polygon" text="Polygon" />
         <SelectItem value="rinkeby" text="Rinkeby Testnet" />
       </Select>
-    </FormGroup>
-    <FormGroup legendText="Updatable Metadata">
-      <RadioButtonGroup name="updatable-button-group" selected="updatable-yes">
-        <RadioButton
-          id="radio-1"
-          value="updatable-yes"
-          labelText="Yes, I want to have dynamic NFTs."
+      <Select name="updatable" labelText="Updatable Metadata" value="polygon">
+        <!-- <SelectItem
+          hidden
+          value="placeholder"
+          text="Choose a blockchain"
+        /> -->
+        <SelectItem value="true" text="Yes, I want to have dynamic NFTs." />
+        <SelectItem
+          value="false"
+          text="No, I want my Metadata frozen once minted."
         />
-        <RadioButton
-          id="radio-2"
-          value="updatable-no"
-          labelText="No, I want my Metadata frozen once minted."
-        />
-      </RadioButtonGroup>
+      </Select>
     </FormGroup>
+
     <Button type="submit">Submit</Button>
   </Form>
 </div>
