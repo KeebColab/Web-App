@@ -8,6 +8,7 @@
   import {
     Form,
     FormGroup,
+    TextInput,
     Checkbox,
     RadioButtonGroup,
     RadioButton,
@@ -19,43 +20,34 @@
 
 <div>
   <Form on:submit>
-    <FormGroup legendText="Checkboxes">
-      <Checkbox id="checkbox-0" labelText="Checkbox Label" checked />
-      <Checkbox id="checkbox-1" labelText="Checkbox Label" />
-      <Checkbox id="checkbox-2" labelText="Checkbox Label" disabled />
+    <TextInput labelText="NFTPort API Key" placeholder="Enter api key..." />
+    <TextInput labelText="Your Ethereum Address" placeholder="0x..." />
+    <TextInput labelText="Name your Story" placeholder="Enter story name..." />
+    <TextInput labelText="Symbol" placeholder="Enter symbol..." />
+    <FormGroup>
+      <Select id="select-1" labelText="Select a blockchain" value="polygon">
+        <!-- <SelectItem
+          hidden
+          value="placeholder"
+          text="Choose a blockchain"
+        /> -->
+        <SelectItem value="polygon" text="Polygon" />
+        <SelectItem value="rinkeby" text="Rinkeby Testnet" />
+      </Select>
     </FormGroup>
-    <FormGroup legendText="Radio buttons">
-      <RadioButtonGroup name="radio-button-group" selected="default-selected">
+    <FormGroup legendText="Updatable Metadata">
+      <RadioButtonGroup name="updatable-button-group" selected="updatable-yes">
         <RadioButton
           id="radio-1"
-          value="standard"
-          labelText="Standard Radio Button"
+          value="updatable-yes"
+          labelText="Yes, I want to have dynamic NFTs."
         />
         <RadioButton
           id="radio-2"
-          value="default-selected"
-          labelText="Default Selected Radio Button"
-        />
-        <RadioButton
-          id="radio-4"
-          value="disabled"
-          labelText="Disabled Radio Button"
-          disabled
+          value="updatable-no"
+          labelText="No, I want my Metadata frozen once minted."
         />
       </RadioButtonGroup>
-    </FormGroup>
-    <FormGroup>
-      <Select id="select-1" labelText="Select menu" value="placeholder-item">
-        <SelectItem
-          disabled
-          hidden
-          value="placeholder-item"
-          text="Choose an option"
-        />
-        <SelectItem value="option-1" text="Option 1" />
-        <SelectItem value="option-2" text="Option 2" />
-        <SelectItem value="option-3" text="Option 3" />
-      </Select>
     </FormGroup>
     <Button type="submit">Submit</Button>
   </Form>
