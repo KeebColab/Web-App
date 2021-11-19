@@ -26,6 +26,29 @@
     console.log(event.target.symbol.value);
     console.log(event.target.chain.value);
     console.log(event.target.updatable.value);
+    const data = JSON.stringify({
+      chain: event.target.chain.value,
+      name: event.target.name.value,
+      symbol: event.target.symbol.value,
+      owner_address: event.target.owner.value,
+      metadata_updatable: event.target.updatable.value,
+    });
+
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "https://api.nftport.xyz/v0/contracts");
+    xhr.withCredentials = false;
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", event.target.apiKey.value);
+
+    xhr.send(data);
   }
 </script>
 
