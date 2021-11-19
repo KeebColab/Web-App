@@ -1,5 +1,6 @@
 // This script will upload the contents of the `dist` folder to web3.storage, so you
 // can view the application using an IPFS gateway.
+// modified from https://github.com/web3-storage/example-image-gallery/blob/main/scripts/deploy.js
 
 import dotenv from 'dotenv'
 import { existsSync } from 'fs'
