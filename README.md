@@ -1,20 +1,4 @@
-# create-svelte
-
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
+# KeebColab Website
 
 ## Developing
 
@@ -36,3 +20,11 @@ npm run build
 ```
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+
+## Deploying
+
+Once you have a production build, you can deploy the 'build' directory to web3.storage with this script. Create a copy of the .env.example file, add your API key to it. You can get a key at https://web3.storage if you don't already have one.
+
+```bash
+node web3-deploy.js
+```
