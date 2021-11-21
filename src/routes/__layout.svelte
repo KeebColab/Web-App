@@ -1,6 +1,7 @@
 <script>
   import Header from "$lib/header/Header.svelte";
   import "../app.css";
+    import "carbon-components-svelte/css/g80.css";
 </script>
 
 <!-- <Header /> -->
