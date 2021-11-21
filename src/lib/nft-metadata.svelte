@@ -4,7 +4,9 @@
   import Web3Storage from "$lib/web3storage.svelte";
 
   function handleMessage(event) {
-    alert(event.detail.text);
+    alert(
+      `File successfully uploaded to IPFS.  Your file url is https://${event.detail.text}.ipfs.dweb.link`
+    );
   }
 
   function handleIt(event) {
@@ -13,7 +15,7 @@
     const data = JSON.stringify({
       name: event.target.name.value,
       description: event.target.description.value,
-      file_url: event.target.file.value,
+      file_url: event.target.file_url.value,
     });
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
@@ -48,7 +50,11 @@
         labelText="description"
         placeholder="description"
       />
-      <TextInput name="file_url" labelText="file_url" placeholder="file_url" />
+      <TextInput
+        name="file_url"
+        labelText="file_url"
+        placeholder="copy your file url here"
+      />
     </FormGroup>
     <Web3Storage on:message={handleMessage} />
     <Button type="submit">Submit</Button>

@@ -11,8 +11,9 @@
 
   function makeStorageClient() {
     const token = document.querySelector('input[name="web3StorageToken"]');
+    console.log(token.value);
     return new Web3Storage({
-      token: token,
+      token: token.value,
     });
   }
 
@@ -24,14 +25,14 @@
     console.log(fileInput.files);
     const cid = storeFiles(fileInput.files);
     console.log(cid);
-    dispatch("message", {
-      text: cid,
-    });
   }
 
   async function storeFiles(files) {
     const client = makeStorageClient();
     const cid = await client.put(files);
+    dispatch("message", {
+      text: cid,
+    });
     console.log("stored files with cid:", cid);
     return cid;
   }
