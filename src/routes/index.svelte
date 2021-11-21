@@ -110,10 +110,8 @@
         <Button type="submit">Submit</Button>
       </Form>
     </TabContent>
-    <TabContent>
-        import 
-    </TabContent>
-    <TabContent><script>import   </script> </TabContent>
+    <TabContent>Content 2</TabContent>
+    <TabContent>Content 3</TabContent>
   </div>
 </Tabs>
 
