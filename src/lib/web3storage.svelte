@@ -1,14 +1,18 @@
 <script>
-  // import dotenv from "dotenv";
+  import { createEventDispatcher } from "svelte";
   import { Web3Storage } from "web3.storage";
+  import {
+    FileUploaderButton,
+    FormGroup,
+    TextInput,
+  } from "carbon-components-svelte";
 
-  // dotenv.config();
+  const dispatch = createEventDispatcher();
 
-  // TODO: get user's api key
   function makeStorageClient() {
+    const token = document.querySelector('input[name="web3StorageToken"]');
     return new Web3Storage({
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEViNjY1YjZhRjI2OThhYmI3M2Q3RWVFNmY4ZEIyMzdBNjZDMTA5MDUiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2MzcyNzUwMDA4MDEsIm5hbWUiOiJORlRQb3J0LTEifQ.fU-hJ-3yUh3X8waEYLL2vrghR9Y8iAvyngduhFI4tOc",
+      token: token,
     });
   }
 
@@ -20,21 +24,11 @@
     console.log(fileInput.files);
     const cid = storeFiles(fileInput.files);
     console.log(cid);
+    dispatch("message", {
+      text: cid,
+    });
   }
-  function makeFileObjects() {
-    // You can create File objects from a Blob of binary data
-    // see: https://developer.mozilla.org/en-US/docs/Web/API/Blob
-    // Here we're just storing a JSON object, but you can store images,
-    // audio, or whatever you want!
-    const obj = { hello: "world" };
-    const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
 
-    const files = [
-      new File(["contents-of-file-1"], "plain-utf8.txt"),
-      new File([blob], "hello.json"),
-    ];
-    return files;
-  }
   async function storeFiles(files) {
     const client = makeStorageClient();
     const cid = await client.put(files);
@@ -67,5 +61,13 @@
   // }
 </script>
 
-/* ask the user to choose a file */
-<input on:change={getFiles} type="file" />
+<web3Storage>
+  <FormGroup>
+    <TextInput
+      name="web3StorageToken"
+      labelText="Web3.Storage Token"
+      placeholder="Enter your token..."
+    />
+    <FileUploaderButton labelText="Add files" on:change={getFiles} />
+  </FormGroup>
+</web3Storage>

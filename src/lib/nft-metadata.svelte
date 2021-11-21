@@ -1,18 +1,19 @@
 <script>
   import "carbon-components-svelte/css/g80.css";
   import { Form, FormGroup, TextInput, Button } from "carbon-components-svelte";
+  import Web3Storage from "$lib/web3storage.svelte";
+
+  function handleMessage(event) {
+    alert(event.detail.text);
+  }
+
   function handleIt(event) {
-    // Prevent the default form submission
     event.preventDefault();
-    // console log the form data
-    console.log(event.target.apiKey.value);
-    console.log(event.target.name.value);
-    console.log(event.target.description.value);
-    console.log(event.target.file_url.value);
+
     const data = JSON.stringify({
       name: event.target.name.value,
-      description: event.target.symbol.value,
-      file_url: event.target.owner.value,
+      description: event.target.description.value,
+      file_url: event.target.file.value,
     });
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
@@ -49,7 +50,7 @@
       />
       <TextInput name="file_url" labelText="file_url" placeholder="file_url" />
     </FormGroup>
-
+    <Web3Storage on:message={handleMessage} />
     <Button type="submit">Submit</Button>
   </Form>
 </nftMetadata>
