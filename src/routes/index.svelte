@@ -3,6 +3,7 @@
 </script>
 
 <script>
+  import Metadata from "$lib/nft-metadata.svelte";
   // Gray 100 theme
   import "carbon-components-svelte/css/g80.css";
   import {
@@ -110,7 +111,9 @@
         <Button type="submit">Submit</Button>
       </Form>
     </TabContent>
-    <TabContent>Content 2</TabContent>
+    <TabContent>
+      <Metadata />
+    </TabContent>
     <TabContent>Content 3</TabContent>
   </div>
 </Tabs>
