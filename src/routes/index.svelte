@@ -9,12 +9,12 @@
     Form,
     FormGroup,
     TextInput,
-    Checkbox,
-    RadioButtonGroup,
-    RadioButton,
     Select,
     SelectItem,
     Button,
+    Tab,
+    Tabs,
+    TabContent,
   } from "carbon-components-svelte";
   function handleSubmit(event) {
     // Prevent the default form submission
@@ -52,61 +52,68 @@
   }
 </script>
 
-<section>
-  <h1>
-    Welcome to your new<br />SvelteKit app
-  </h1>
-
-  <h2>
-    try editing <strong>src/routes/index.svelte</strong>
-  </h2>
-</section>
-
-<div>
-  <Form on:submit={handleSubmit}>
-    <TextInput
-      name="apiKey"
-      labelText="NFTPort API Key"
-      placeholder="Enter api key..."
-    />
-    <TextInput
-      name="owner"
-      labelText="Your Ethereum Address"
-      placeholder="0x..."
-    />
-    <TextInput
-      name="name"
-      labelText="Name your Contract"
-      placeholder="Enter story name..."
-    />
-    <TextInput name="symbol" labelText="Symbol" placeholder="Enter symbol..." />
-    <FormGroup>
-      <Select name="chain" labelText="Select a blockchain" value="polygon">
-        <!-- <SelectItem
-          hidden
-          value="placeholder"
-          text="Choose a blockchain"
-        /> -->
-        <SelectItem value="polygon" text="Polygon" />
-        <SelectItem value="rinkeby" text="Rinkeby Testnet" />
-      </Select>
-      <Select name="updatable" labelText="Updatable Metadata" value="polygon">
-        <!-- <SelectItem
-          hidden
-          value="placeholder"
-          text="Choose a blockchain"
-        /> -->
-        <SelectItem value="true" text="Yes, I want to have dynamic NFTs." />
-        <SelectItem
-          value="false"
-          text="No, I want my Metadata frozen once minted."
+<Tabs autoWidth>
+  <Tab label="Deploy Contract" />
+  <Tab label="Define Metadata" disabled="true" />
+  <Tab label="Mint NFT" disabled="true" />
+  <div slot="content">
+    <TabContent>
+      <Form on:submit={handleSubmit}>
+        <TextInput
+          name="apiKey"
+          labelText="NFTPort API Key"
+          placeholder="Enter api key..."
         />
-      </Select>
-    </FormGroup>
+        <TextInput
+          name="owner"
+          labelText="Your Ethereum Address"
+          placeholder="0x..."
+        />
+        <TextInput
+          name="name"
+          labelText="Name your Contract"
+          placeholder="Enter story name..."
+        />
+        <TextInput
+          name="symbol"
+          labelText="Symbol"
+          placeholder="Enter symbol..."
+        />
+        <FormGroup>
+          <Select name="chain" labelText="Select a blockchain" value="polygon">
+            <!-- <SelectItem
+              hidden
+              value="placeholder"
+              text="Choose a blockchain"
+            /> -->
+            <SelectItem value="polygon" text="Polygon" />
+            <SelectItem value="rinkeby" text="Rinkeby Testnet" />
+          </Select>
+          <Select
+            name="updatable"
+            labelText="Updatable Metadata"
+            value="polygon"
+          >
+            <!-- <SelectItem
+              hidden
+              value="placeholder"
+              text="Choose a blockchain"
+            /> -->
+            <SelectItem value="true" text="Yes, I want to have dynamic NFTs." />
+            <SelectItem
+              value="false"
+              text="No, I want my Metadata frozen once minted."
+            />
+          </Select>
+        </FormGroup>
 
-    <Button type="submit">Submit</Button>
-  </Form>
-</div>
+        <Button type="submit">Submit</Button>
+      </Form>
+    </TabContent>
+    <TabContent>Content 2</TabContent>
+    <TabContent>Content 3</TabContent>
+  </div>
+</Tabs>
 
 <style>
   /* section {
