@@ -50,6 +50,7 @@
       name="apiKey"
       labelText="NFTPort API Key"
       placeholder="Enter api key..."
+      type="password"
     />
     <TextInput
       name="owner"

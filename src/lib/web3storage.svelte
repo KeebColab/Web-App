@@ -68,6 +68,7 @@
       name="web3StorageToken"
       labelText="Web3.Storage Token"
       placeholder="Enter your token..."
+      type="password"
     />
     <FileUploaderButton labelText="Add files" on:change={getFiles} />
   </FormGroup>
