@@ -1,26 +1,41 @@
 <script>
-  const data = JSON.stringify({
-    chain: "polygon",
-    contract_address: "0xC8D297D7b496f86673551c933815B47973FC4a0e",
-    metadata_uri: "ipfs://QmTz7dGHvXghNuh3V64QBwHPXva4chpMR7frpfxCaxvhd4",
-    mint_to_address: "0x5FDd0881Ef284D6fBB2Ed97b01cb13d707f91e42",
-  });
+  export let chain, metadata_uri, contract_address, nftport_token;
+  import { FormGroup, TextInput, Button } from "carbon-components-svelte";
 
-  const xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
+  function handleEvent(event) {
+    event.preventDefault();
 
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      console.log(this.responseText);
-    }
-  });
+    const data = JSON.stringify({
+      chain: chain,
+      contract_address: contract_address,
+      metadata_uri: metadata_uri,
+      mint_to_address: event.target.ownerAddress.value,
+    });
 
-  xhr.open("POST", "https://api.nftport.xyz/v0/mints/customizable");
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader(
-    "Authorization",
-    "asdflksdfl0-12312398234-sdklvndslf-3333333"
-  );
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
 
-  xhr.send(data);
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "https://api.nftport.xyz/v0/mints/customizable");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", nftport_token);
+
+    xhr.send(data);
+  }
 </script>
+
+<mint>
+  <FormGroup on:submit={handleEvent}>
+    <TextInput
+      name="ownerAddress"
+      labelText="NFT Owner Address"
+      placeholder="Enter the address..."
+    />
+  </FormGroup>
+  <Button type="submit">Upload Metadata</Button>
+</mint>

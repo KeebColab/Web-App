@@ -34,6 +34,7 @@
 
 <nftMetadata>
   <Form on:submit={handleIt}>
+    <Web3Storage on:message={handleMessage} />
     <FormGroup>
       <TextInput
         name="apiKey"
@@ -57,7 +58,6 @@
         placeholder="copy your file url here"
       />
     </FormGroup>
-    <Web3Storage on:message={handleMessage} />
-    <Button type="submit">Submit</Button>
+    <Button type="submit">Upload Metadata</Button>
   </Form>
 </nftMetadata>
