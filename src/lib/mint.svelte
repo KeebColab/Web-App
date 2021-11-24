@@ -36,6 +36,6 @@
       labelText="NFT Owner Address"
       placeholder="Enter the address..."
     />
+    <Button type="submit">Mint Token</Button>
   </FormGroup>
-  <Button type="submit">Upload Metadata</Button>
 </mint>

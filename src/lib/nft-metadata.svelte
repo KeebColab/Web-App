@@ -1,13 +1,12 @@
 <script>
   import "carbon-components-svelte/css/g80.css";
-  import { Form, FormGroup, TextInput, Button } from "carbon-components-svelte";
-  import Web3Storage from "$lib/web3storage.svelte";
-
-  function handleMessage(event) {
-    alert(
-      `File successfully uploaded to IPFS.  Your file url is https://${event.detail.text}.ipfs.dweb.link`
-    );
-  }
+  import {
+    Form,
+    FormGroup,
+    TextInput,
+    Button,
+    PasswordInput,
+  } from "carbon-components-svelte";
 
   function handleIt(event) {
     event.preventDefault();
@@ -34,13 +33,12 @@
 
 <nftMetadata>
   <Form on:submit={handleIt}>
-    <Web3Storage on:message={handleMessage} />
     <FormGroup>
-      <TextInput
+      <PasswordInput
         name="apiKey"
         labelText="NFTPort API Key"
         placeholder="Enter api key..."
-        type="password"
+        type="text"
       />
       <TextInput
         name="name"

@@ -6,6 +6,7 @@
     Select,
     SelectItem,
     Button,
+    PasswordInput,
   } from "carbon-components-svelte";
   function handleSubmit(event) {
     // Prevent the default form submission
@@ -46,11 +47,11 @@
 
 <deployContract>
   <Form on:submit={handleSubmit}>
-    <TextInput
+    <PasswordInput
       name="apiKey"
       labelText="NFTPort API Key"
       placeholder="Enter api key..."
-      type="password"
+      type="text"
     />
     <TextInput
       name="owner"

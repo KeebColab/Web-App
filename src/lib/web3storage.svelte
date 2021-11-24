@@ -1,13 +1,10 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import { Web3Storage } from "web3.storage";
   import {
     FileUploaderButton,
     FormGroup,
     TextInput,
   } from "carbon-components-svelte";
-
-  const dispatch = createEventDispatcher();
 
   function makeStorageClient() {
     const token = document.querySelector('input[name="web3StorageToken"]');
