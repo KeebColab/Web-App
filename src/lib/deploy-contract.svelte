@@ -1,4 +1,5 @@
 <script>
+  import { dataFeed, nftportToken } from "$lib/stores";
   import {
     Form,
     FormGroup,
@@ -8,6 +9,7 @@
     Button,
     PasswordInput,
   } from "carbon-components-svelte";
+  import { append } from "svelte/internal";
   function handleSubmit(event) {
     // Prevent the default form submission
     event.preventDefault();
@@ -32,6 +34,7 @@
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
+        $dataFeed = [...$dataFeed, JSON.parse(this.responseText)];
         console.log(this.responseText);
       }
     });
@@ -52,6 +55,7 @@
       labelText="NFTPort API Key"
       placeholder="Enter api key..."
       type="text"
+      bind:value={$nftportToken}
     />
     <TextInput
       name="owner"

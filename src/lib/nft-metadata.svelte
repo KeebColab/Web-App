@@ -1,4 +1,5 @@
 <script>
+  import { nftportToken } from "$lib/stores";
   import "carbon-components-svelte/css/g80.css";
   import {
     Form,
@@ -39,6 +40,7 @@
         labelText="NFTPort API Key"
         placeholder="Enter api key..."
         type="text"
+        bind:value={$nftportToken}
       />
       <TextInput
         name="name"
